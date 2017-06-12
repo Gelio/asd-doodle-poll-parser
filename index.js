@@ -3,6 +3,7 @@ const { convertPoll, getPoll } = require('./convert-poll');
 const PORT = 5000;
 
 const app = express();
+
 app.get('/json', (req, res) => {
   getPoll()
     .then(poll => {
@@ -27,6 +28,10 @@ app.get('/text', (req, res) => {
       }
       res.send('<pre>' + output + '</pre>')
     });
+});
+
+app.get('/', (req, res) => {
+  res.redirect('/text');
 });
 
 app.listen(PORT, () => {
